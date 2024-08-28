@@ -6,6 +6,7 @@ type ProductInfo = {
   productName: string;
   productDescription: string;
   productPrice: number;
+  productImg: string;
 };
 
 type ProductProps = {
@@ -35,7 +36,7 @@ export const Products: React.FC<ProductProps> = ({ productInfo }) => {
           mt: 3,
         }}
       >
-        <Img src="https://via.placeholder.com/100" alt="Product" />
+        <Img src={productInfo.productImg} alt="Product" />
         <Box sx={{ flexGrow: 1, display: "grid", gap: 1 }}>
           <Typography variant="h5">{productInfo.productName}</Typography>
           <Typography variant="body1">

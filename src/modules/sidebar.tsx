@@ -21,6 +21,7 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import Grid from "@mui/material/Grid2";
 import { Products } from "../components/cards";
+import ImgMediaCard from "../components/card";
 
 const drawerWidth = 240;
 
@@ -120,11 +121,13 @@ export default function MiniDrawer() {
 
   //my cards (test)
   // Destructuring de objetos en JavaScript
-  const productInfo = {
-    productName: "unknown",
-    productDescription: "unknown",
+  const productInfo = (nr:number) => {
+    return {
+    productName: "unknown"+nr,
+    productDescription: "unknown"+nr,
     productPrice: 9.99,
-  };
+    productImg: `../src/assets/images/proyecto${nr}.png`
+  }};
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -268,7 +271,18 @@ export default function MiniDrawer() {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         <Grid container spacing={2}>
-          <Products productInfo={productInfo} />
+          <Grid container>
+            <ImgMediaCard />
+            <ImgMediaCard />
+          </Grid>
+          <Grid container>
+            <Products productInfo={productInfo(3)} />
+            <Products productInfo={productInfo(4)} />
+            <Products productInfo={productInfo(5)} />
+            <Products productInfo={productInfo(6)} />
+            <Products productInfo={productInfo(7)} />
+            <Products productInfo={productInfo(8)} />
+          </Grid>
         </Grid>
       </Box>
     </Box>

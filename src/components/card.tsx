@@ -1,32 +1,54 @@
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import { CardActionArea } from "@mui/material";
 
-export default function ImgMediaCard() {
+// Definimos el tipo para la función que se pasa al Hijo
+type ServiceInfo = {
+  serviceName: string;
+  serviceDescription: string;
+  servicePrice: number;
+  serviceImg: string;
+};
+
+type ServiceProps = {
+  serviceInfo: ServiceInfo;
+};
+
+export const Services: React.FC<ServiceProps> = ({ serviceInfo }) => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        alt="green iguana"
-        height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Lizard
-        </Typography>
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
+    <Card
+      sx={{
+        maxWidth: 345,
+        transition: "0.2",
+        "&:hover": { transform: "scale(1.05)" },
+      }}
+    >
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          alt="green iguana"
+          height="140"
+          image={serviceInfo.serviceImg}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {serviceInfo.serviceName}
+          </Typography>
+          <Typography variant="body2" sx={{ color: "text.secondary" }}>
+            {serviceInfo.serviceDescription}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button size="small">Add</Button>
+        <Button color="error" size="small">
+          Remove
+        </Button>
       </CardActions>
     </Card>
   );
-}
+};

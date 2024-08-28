@@ -1,5 +1,4 @@
 import * as React from "react";
-// import { useState } from "react";
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
@@ -21,7 +20,7 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import Grid from "@mui/material/Grid2";
 import { Products } from "../components/cards";
-import ImgMediaCard from "../components/card";
+import { Services } from "../components/card";
 
 const drawerWidth = 240;
 
@@ -120,13 +119,22 @@ export default function MiniDrawer() {
   };
 
   //my cards (test)
+    // Destructuring de objetos en JavaScript
+    const serviceInfo = (serviceNr:number) => {
+      return {
+      serviceName: "unknown"+serviceNr,
+      serviceDescription: "unknown"+serviceNr,
+      servicePrice: 9.99,
+      serviceImg: `../src/assets/images/proyecto${serviceNr}.jpg`
+    }};
+  
   // Destructuring de objetos en JavaScript
-  const productInfo = (nr:number) => {
+  const productInfo = (productNr:number) => {
     return {
-    productName: "unknown"+nr,
-    productDescription: "unknown"+nr,
+    productName: "unknown"+productNr,
+    productDescription: "unknown"+productNr,
     productPrice: 9.99,
-    productImg: `../src/assets/images/proyecto${nr}.png`
+    productImg: `../src/assets/images/proyecto${productNr}.png`
   }};
 
   return (
@@ -272,8 +280,8 @@ export default function MiniDrawer() {
         <DrawerHeader />
         <Grid container spacing={2}>
           <Grid container>
-            <ImgMediaCard />
-            <ImgMediaCard />
+            <Services serviceInfo={serviceInfo(1)} />
+            <Services serviceInfo={serviceInfo(2)} />
           </Grid>
           <Grid container>
             <Products productInfo={productInfo(3)} />

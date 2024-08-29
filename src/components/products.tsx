@@ -36,7 +36,7 @@ export const Products: React.FC<ProductProps> = ({ productInfo }) => {
           mt: 3,
         }}
       >
-        <Img src={productInfo.productImg} alt="Product" />
+        <Img src={productInfo.productImg} alt="product image" />
         <Box sx={{ flexGrow: 1, display: "grid", gap: 1 }}>
           <Typography variant="h5">{productInfo.productName}</Typography>
           <Typography variant="body1">

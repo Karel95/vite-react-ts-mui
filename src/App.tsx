@@ -1,5 +1,5 @@
 import "./App.css";
-import MiniDrawer from "./modules/sidebar";
+import MiniDrawer from "./components/sidebar";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { lightTheme, darkTheme } from "./themes";
 import { useEffect, useState } from "react";

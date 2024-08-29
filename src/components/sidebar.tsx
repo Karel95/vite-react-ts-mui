@@ -18,9 +18,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import Grid from "@mui/material/Grid2";
-import { Products } from "../components/cards";
-import { Services } from "../components/card";
+import Main from "./main";
 
 const drawerWidth = 240;
 
@@ -118,24 +116,7 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
-  //my cards (test)
-    // Destructuring de objetos en JavaScript
-    const serviceInfo = (serviceNr:number) => {
-      return {
-      serviceName: "unknown"+serviceNr,
-      serviceDescription: "unknown"+serviceNr,
-      servicePrice: 9.99,
-      serviceImg: `../src/assets/images/proyecto${serviceNr}.jpg`
-    }};
   
-  // Destructuring de objetos en JavaScript
-  const productInfo = (productNr:number) => {
-    return {
-    productName: "unknown"+productNr,
-    productDescription: "unknown"+productNr,
-    productPrice: 9.99,
-    productImg: `../src/assets/images/proyecto${productNr}.png`
-  }};
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -278,20 +259,7 @@ export default function MiniDrawer() {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Grid container spacing={2}>
-          <Grid container>
-            <Services serviceInfo={serviceInfo(1)} />
-            <Services serviceInfo={serviceInfo(2)} />
-          </Grid>
-          <Grid container>
-            <Products productInfo={productInfo(3)} />
-            <Products productInfo={productInfo(4)} />
-            <Products productInfo={productInfo(5)} />
-            <Products productInfo={productInfo(6)} />
-            <Products productInfo={productInfo(7)} />
-            <Products productInfo={productInfo(8)} />
-          </Grid>
-        </Grid>
+        <Main />
       </Box>
     </Box>
   );

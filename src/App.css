@@ -1,4 +1,7 @@
 
+.drawerBox {
+    margin-top: 5rem;
+}
 
 .btn-quitar {
     display: none;
@@ -19,4 +22,3 @@
 .btn-quitar:hover {
     color: red;
 }
-

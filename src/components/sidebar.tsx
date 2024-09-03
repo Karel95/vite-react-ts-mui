@@ -1,3 +1,4 @@
+import "../App.css";
 import * as React from "react";
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -91,14 +92,22 @@ const Drawer = styled(MuiDrawer, {
       props: ({ open }) => open,
       style: {
         ...openedMixin(theme),
-        "& .MuiDrawer-paper": openedMixin(theme),
+        "& .MuiDrawer-paper": {
+          ...openedMixin(theme),
+          marginTop: "64px", // Aplica el mismo ajuste al papel del Drawer
+          height: `calc(100vh - 64px)`, // Ajusta la altura del papel del Drawer
+        },
       },
     },
     {
       props: ({ open }) => !open,
       style: {
         ...closedMixin(theme),
-        "& .MuiDrawer-paper": closedMixin(theme),
+        "& .MuiDrawer-paper": {
+          ...closedMixin(theme),
+          marginTop: "64px", // Aplica el mismo ajuste al papel del Drawer
+          height: `calc(100vh - 64px)`, // Ajusta la altura del papel del Drawer
+        },
       },
     },
   ],
@@ -116,12 +125,10 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
-  
-
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="relative" open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -142,7 +149,7 @@ export default function MiniDrawer() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open}>
+      <Drawer sx={{ marginTop: "5rem" }} variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
@@ -155,7 +162,7 @@ export default function MiniDrawer() {
         <Divider />
         <List>
           {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
+            <ListItem key={text} disablePadding sx={{ display: "flex" }}>
               <ListItemButton
                 sx={[
                   {

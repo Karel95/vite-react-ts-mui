@@ -7,7 +7,7 @@ const serviceInfo = (serviceNr: number) => {
   return {
     serviceDescription: "unknown" + serviceNr,
     servicePrice: 9.99,
-    serviceImg: `../src/assets/images/proyecto${serviceNr}.jpg`,
+    serviceImg: `/images/proyecto${serviceNr}.jpg`,
     add: false,
   };
 };
@@ -18,7 +18,7 @@ const productInfo = (productNr: number) => {
     productName: "unknown" + productNr,
     productDescription: "unknown" + productNr,
     productPrice: 9.99,
-    productImg: `../src/assets/images/proyecto${productNr}.png`,
+    productImg: `/images/proyecto${productNr}.png`,
   };
 };
 
@@ -27,7 +27,7 @@ const productInfo8 = {
   productName: "unknown8",
   productDescription: "unknown8",
   productPrice: 9.99,
-  productImg: `../src/assets/images/proyecto8.png`,
+  productImg: `/images/proyecto8.png`,
 };
 
 //Array para pasar como prop
@@ -36,19 +36,19 @@ const productInfos = [
     productName: "unknown5",
     productDescription: "unknown5",
     productPrice: 9.99,
-    productImg: `../src/assets/images/proyecto5.png`,
+    productImg: `/images/proyecto5.png`,
   },
   {
     productName: "unknown6",
     productDescription: "unknown6",
     productPrice: 9.99,
-    productImg: `../src/assets/images/proyecto6.png`,
+    productImg: `/images/proyecto6.png`,
   },
   {
     productName: "unknown7",
     productDescription: "unknown7",
     productPrice: 9.99,
-    productImg: `../src/assets/images/proyecto7.png`,
+    productImg: `/images/proyecto7.png`,
   },
 ];
 

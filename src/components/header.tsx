@@ -23,7 +23,6 @@ type ModeProps = {
 
 
 const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar: React.FC<ModeProps> = ({ isDarkMode, mode }) => {
   // useEffect
@@ -144,14 +143,14 @@ const ResponsiveAppBar: React.FC<ModeProps> = ({ isDarkMode, mode }) => {
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{ flexGrow: 0}}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{ mt: '45px'}}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
@@ -166,14 +165,13 @@ const ResponsiveAppBar: React.FC<ModeProps> = ({ isDarkMode, mode }) => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography sx={{ textAlign: 'center' }}>Home</Typography>
+              </MenuItem>
             </Menu>
           </Box>
           <Button
+            sx={{ ml: '10px'}}
             startIcon={themeIcon}
             variant="contained"
             color="primary"

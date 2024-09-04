@@ -48,3 +48,7 @@ export default tseslint.config({
   },
 })
 ```
+
+IMPORTANTE:
+Lo sgte. es para hacer el build y que tome el root del folder contenedor (evitar el error 404)
+ --base=./

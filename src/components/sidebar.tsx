@@ -1,4 +1,3 @@
-import "../App.css";
 import { useState } from "react";
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
 import Box from "@mui/material/Box";

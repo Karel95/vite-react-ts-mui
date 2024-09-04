@@ -4,6 +4,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { lightTheme, darkTheme } from "./themes";
 import { useEffect, useState } from "react";
 import ResponsiveAppBar from "./components/header";
+import { BrowserRouter } from "react-router-dom";
 
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -35,9 +36,11 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
-        <CssBaseline />
-        <ResponsiveAppBar />
-        <MiniDrawer  isDarkMode={isDarkMode} mode={mode} />
+        <BrowserRouter>
+          <CssBaseline />
+          <ResponsiveAppBar isDarkMode={isDarkMode} mode={mode} />
+          <MiniDrawer  />
+        </BrowserRouter>
       </ThemeProvider>
     </>
   );

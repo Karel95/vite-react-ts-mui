@@ -1,13 +1,10 @@
 import "../App.css";
-import * as React from "react";
 import { useState } from "react";
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
 import List from "@mui/material/List";
 import CssBaseline from "@mui/material/CssBaseline";
 import Typography from "@mui/material/Typography";
@@ -23,13 +20,7 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import Main from "./grid";
-import { Button } from "@mui/material";
 
-// Definimos los tipos de las props para el ThemeMode
-type ModeProps = {
-  isDarkMode: boolean;
-  mode: (newMode: boolean) => void;
-};
 
 const drawerWidth = 240;
 
@@ -144,18 +135,7 @@ const Drawer = styled(MuiDrawer, {
   ],
 }));
 
-const MiniDrawer: React.FC<ModeProps> = ({ isDarkMode, mode }) => {
-  // useEffect
-  React.useEffect(() => {
-    mode(!isDarkMode);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const toggleTheme = () => {
-    mode(!isDarkMode);
-  };
-
-  const themeIcon = isDarkMode ? <DarkModeIcon /> : <LightModeIcon />;
+const MiniDrawer = () => {
 
   //sidebar
   const theme = useTheme();
@@ -191,12 +171,6 @@ const MiniDrawer: React.FC<ModeProps> = ({ isDarkMode, mode }) => {
           <Typography variant="h6" sx={{flexGrow: 1}} component="div">
             Studio
           </Typography>
-          <Button
-            startIcon={themeIcon}
-            variant="contained"
-            color="primary"
-            onClick={toggleTheme}
-          />
         </Toolbar>
       </AppBar>
       <Drawer sx={{ marginTop: "5rem" }} variant="permanent" open={open}>

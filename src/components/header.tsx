@@ -1,4 +1,6 @@
 import * as React from 'react';
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,10 +15,30 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
+// Definimos los tipos de las props para el ThemeMode
+type ModeProps = {
+  isDarkMode: boolean;
+  mode: (newMode: boolean) => void;
+};
+
+
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-function ResponsiveAppBar() {
+const ResponsiveAppBar: React.FC<ModeProps> = ({ isDarkMode, mode }) => {
+  // useEffect
+  React.useEffect(() => {
+    mode(!isDarkMode);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const toggleTheme = () => {
+    mode(!isDarkMode);
+  };
+
+  const themeIcon = isDarkMode ? <DarkModeIcon /> : <LightModeIcon />;
+
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -151,6 +173,12 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
+          <Button
+            startIcon={themeIcon}
+            variant="contained"
+            color="primary"
+            onClick={toggleTheme}
+          />
         </Toolbar>
       </Container>
     </AppBar>

@@ -192,20 +192,15 @@ const MiniDrawer: React.FC<ModeProps> = ({ isDarkMode, mode }) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" sx={{flexGrow: 1}} component="div">
             Mini variant drawer
           </Typography>
-          <div style={{ padding: "16px", marginLeft: "20rem" }}>
-            <Button
-              startIcon={themeIcon}
-              variant="contained"
-              color="primary"
-              onClick={toggleTheme}
-            >
-              Toggle Theme
-            </Button>
-            <p>This is a {isDarkMode ? "dark" : "light"} theme.</p>
-          </div>
+          <Button
+            startIcon={themeIcon}
+            variant="contained"
+            color="primary"
+            onClick={toggleTheme}
+          />
         </Toolbar>
       </AppBar>
       <Drawer sx={{ marginTop: "5rem" }} variant="permanent" open={open}>

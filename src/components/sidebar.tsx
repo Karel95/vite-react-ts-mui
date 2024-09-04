@@ -43,18 +43,14 @@ const openedMixin = (theme: Theme): CSSObject => ({
 });
 
 const closedMixin = (theme: Theme): CSSObject => ({
-  transition: theme.transitions.create(["width", "margin-top", "height"], {
+  transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  overflowX: "hidden",
+  overflowX: 'hidden',
   width: `calc(${theme.spacing(7)} + 1px)`,
-  marginTop: theme.spacing(7), // Asegura que el marginTop se aplique en pantallas pequeñas
-  height: `calc(100vh - 2 * ${theme.spacing(7)})`, // Asegura que la altura se aplique en pantallas pequeñas
-  [theme.breakpoints.up("sm")]: {
+  [theme.breakpoints.up('sm')]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
-    marginTop: theme.spacing(8), // Asegura que el marginTop se aplique en pantallas grandes
-    height: `calc(100vh - 2 * ${theme.spacing(8)})`, // Asegura que la altura se aplique en pantallas grandes
   },
 });
 
@@ -93,7 +89,7 @@ const AppBar = styled(MuiAppBar, {
     },
   ],
   // Añade un top si necesitas bajar el AppBar
-  marginTop: theme.spacing(8), // 64px for large screens (default)
+  marginTop: `calc(${theme.spacing(8)})`, // 64px for large screens (default)
   height: `${theme.spacing(8)}`, // 64px for large screens (default)
   [theme.breakpoints.down("sm")]: {
     marginTop: theme.spacing(7), // 56px for small screens
@@ -121,7 +117,7 @@ const Drawer = styled(MuiDrawer, {
         ...openedMixin(theme),
         "& .MuiDrawer-paper": {
           ...openedMixin(theme),
-          marginTop: theme.spacing(8), // 64px para pantallas grandes (default)
+          marginTop: `calc(${theme.spacing(8)})`, // 64px para pantallas grandes (default)
           height: `calc(100vh - 2 * ${theme.spacing(8)})`, // Restar dos veces la altura del AppBar para pantallas grandes
           [theme.breakpoints.down("sm")]: {
             marginTop: theme.spacing(7), // 56px para pantallas pequeñas
@@ -136,7 +132,7 @@ const Drawer = styled(MuiDrawer, {
         ...closedMixin(theme),
         "& .MuiDrawer-paper": {
           ...closedMixin(theme),
-          marginTop: theme.spacing(8), // 64px para pantallas grandes (default)
+          marginTop: `calc(${theme.spacing(8)})`, // 64px para pantallas grandes (default)
           height: `calc(100vh - 2 * ${theme.spacing(8)})`, // Restar dos veces la altura del AppBar para pantallas grandes
           [theme.breakpoints.down("sm")]: {
             marginTop: theme.spacing(7), // 56px para pantallas pequeñas
@@ -176,7 +172,7 @@ const MiniDrawer: React.FC<ModeProps> = ({ isDarkMode, mode }) => {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" open={open} sx={{ border: "1px solid gray" }}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -193,7 +189,7 @@ const MiniDrawer: React.FC<ModeProps> = ({ isDarkMode, mode }) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" sx={{flexGrow: 1}} component="div">
-            Mini variant drawer
+            Studio
           </Typography>
           <Button
             startIcon={themeIcon}

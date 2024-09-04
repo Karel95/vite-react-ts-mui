@@ -55,7 +55,7 @@ const productInfos = [
 const Main = () => {
   return (
     <>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} sx={{}}>
         <Grid container>
           <Services serviceInfo={serviceInfo(1)}>unknownA</Services>
           <Services serviceInfo={serviceInfo(2)}>unknownB</Services>

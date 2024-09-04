@@ -78,6 +78,8 @@ const AppBar = styled(MuiAppBar, {
       },
     },
   ],
+  // Añade un top si necesitas bajar el AppBar
+  top: '64px', // Ajusta este valor según lo que necesites
 }));
 
 const Drawer = styled(MuiDrawer, {
@@ -128,7 +130,7 @@ export default function MiniDrawer() {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="relative" open={open}>
+      <AppBar position="fixed" open={open}>
         <Toolbar>
           <IconButton
             color="inherit"

@@ -1,7 +1,12 @@
+import { Box } from "@mui/material"
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <>
+      <Box sx={{
+          marginTop: "64px", // 64px cada barra
+        }}>Home</Box>
+    </>
   )
 }
 

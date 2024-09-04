@@ -3,7 +3,6 @@ import MiniDrawer from "./components/sidebar";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { lightTheme, darkTheme } from "./themes";
 import { useEffect, useState } from "react";
-import ThemeMode from "./components/themeMode";
 import ResponsiveAppBar from "./components/header";
 
 export default function App() {
@@ -38,8 +37,7 @@ export default function App() {
       <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
         <CssBaseline />
         <ResponsiveAppBar />
-        <MiniDrawer />
-        <ThemeMode isDarkMode={isDarkMode} mode={mode} />
+        <MiniDrawer  isDarkMode={isDarkMode} mode={mode} />
       </ThemeProvider>
     </>
   );

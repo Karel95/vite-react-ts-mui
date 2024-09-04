@@ -1,10 +1,13 @@
 import "../App.css";
 import * as React from "react";
+import { useState } from "react";
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import List from "@mui/material/List";
 import CssBaseline from "@mui/material/CssBaseline";
 import Typography from "@mui/material/Typography";
@@ -19,7 +22,14 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import Main from "./main";
+import Main from "./grid";
+import { Button } from "@mui/material";
+
+// Definimos los tipos de las props para el ThemeMode
+type ModeProps = {
+  isDarkMode: boolean;
+  mode: (newMode: boolean) => void;
+};
 
 const drawerWidth = 240;
 
@@ -33,14 +43,18 @@ const openedMixin = (theme: Theme): CSSObject => ({
 });
 
 const closedMixin = (theme: Theme): CSSObject => ({
-  transition: theme.transitions.create("width", {
+  transition: theme.transitions.create(["width", "margin-top", "height"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: "hidden",
   width: `calc(${theme.spacing(7)} + 1px)`,
+  marginTop: theme.spacing(7), // Asegura que el marginTop se aplique en pantallas pequeñas
+  height: `calc(100vh - 2 * ${theme.spacing(7)})`, // Asegura que la altura se aplique en pantallas pequeñas
   [theme.breakpoints.up("sm")]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
+    marginTop: theme.spacing(8), // Asegura que el marginTop se aplique en pantallas grandes
+    height: `calc(100vh - 2 * ${theme.spacing(8)})`, // Asegura que la altura se aplique en pantallas grandes
   },
 });
 
@@ -79,7 +93,12 @@ const AppBar = styled(MuiAppBar, {
     },
   ],
   // Añade un top si necesitas bajar el AppBar
-  top: '64px', // Ajusta este valor según lo que necesites
+  marginTop: theme.spacing(8), // 64px for large screens (default)
+  height: `${theme.spacing(8)}`, // 64px for large screens (default)
+  [theme.breakpoints.down("sm")]: {
+    marginTop: theme.spacing(7), // 56px for small screens
+    height: `${theme.spacing(7)}`, // 56px for small screens
+  },
 }));
 
 const Drawer = styled(MuiDrawer, {
@@ -89,6 +108,12 @@ const Drawer = styled(MuiDrawer, {
   flexShrink: 0,
   whiteSpace: "nowrap",
   boxSizing: "border-box",
+  marginTop: theme.spacing(8), // 64px para pantallas grandes
+  height: `calc(100vh - 2 * ${theme.spacing(8)})`, // Restar dos veces la altura del AppBar para pantallas grandes
+  [theme.breakpoints.down("sm")]: {
+    marginTop: theme.spacing(7), // 56px para pantallas pequeñas
+    height: `calc(100vh - 2 * ${theme.spacing(7)})`, // Restar dos veces la altura del AppBar para pantallas pequeñas
+  },
   variants: [
     {
       props: ({ open }) => open,
@@ -96,8 +121,12 @@ const Drawer = styled(MuiDrawer, {
         ...openedMixin(theme),
         "& .MuiDrawer-paper": {
           ...openedMixin(theme),
-          marginTop: "64px", // Aplica el mismo ajuste al papel del Drawer
-          height: `calc(100vh - 64px)`, // Ajusta la altura del papel del Drawer
+          marginTop: theme.spacing(8), // 64px para pantallas grandes (default)
+          height: `calc(100vh - 2 * ${theme.spacing(8)})`, // Restar dos veces la altura del AppBar para pantallas grandes
+          [theme.breakpoints.down("sm")]: {
+            marginTop: theme.spacing(7), // 56px para pantallas pequeñas
+            height: `calc(100vh - 2 * ${theme.spacing(7)})`, // Restar dos veces la altura del AppBar para pantallas pequeñas
+          },
         },
       },
     },
@@ -107,17 +136,34 @@ const Drawer = styled(MuiDrawer, {
         ...closedMixin(theme),
         "& .MuiDrawer-paper": {
           ...closedMixin(theme),
-          marginTop: "64px", // Aplica el mismo ajuste al papel del Drawer
-          height: `calc(100vh - 64px)`, // Ajusta la altura del papel del Drawer
+          marginTop: theme.spacing(8), // 64px para pantallas grandes (default)
+          height: `calc(100vh - 2 * ${theme.spacing(8)})`, // Restar dos veces la altura del AppBar para pantallas grandes
+          [theme.breakpoints.down("sm")]: {
+            marginTop: theme.spacing(7), // 56px para pantallas pequeñas
+            height: `calc(100vh - 2 * ${theme.spacing(7)})`, // Restar dos veces la altura del AppBar para pantallas pequeñas
+          },
         },
       },
     },
   ],
 }));
 
-export default function MiniDrawer() {
+const MiniDrawer: React.FC<ModeProps> = ({ isDarkMode, mode }) => {
+  // useEffect
+  React.useEffect(() => {
+    mode(!isDarkMode);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const toggleTheme = () => {
+    mode(!isDarkMode);
+  };
+
+  const themeIcon = isDarkMode ? <DarkModeIcon /> : <LightModeIcon />;
+
+  //sidebar
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -149,6 +195,17 @@ export default function MiniDrawer() {
           <Typography variant="h6" noWrap component="div">
             Mini variant drawer
           </Typography>
+          <div style={{ padding: "16px", marginLeft: "20rem" }}>
+            <Button
+              startIcon={themeIcon}
+              variant="contained"
+              color="primary"
+              onClick={toggleTheme}
+            >
+              Toggle Theme
+            </Button>
+            <p>This is a {isDarkMode ? "dark" : "light"} theme.</p>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer sx={{ marginTop: "5rem" }} variant="permanent" open={open}>
@@ -272,4 +329,6 @@ export default function MiniDrawer() {
       </Box>
     </Box>
   );
-}
+};
+
+export default MiniDrawer;

@@ -1,6 +1,6 @@
 import { Box, Button, TextField } from "@mui/material";
 
-const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
   // Handle form submission logic here
   console.log("Form submitted");
   e.preventDefault();
@@ -17,7 +17,6 @@ const Login = () => {
         }}>
         <Box
           component="form"
-          onSubmit={handleSubmit}
           sx={{
             "& > :not(style)": { m: 1, width: "60%" },
           }}
@@ -53,7 +52,7 @@ const Login = () => {
           />
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button type="submit" sx={{mr: '5%'}} >Register</Button>
+          <Button type="submit" sx={{mr: '5%'}} onClick={handleSubmit} >Register</Button>
         </Box>
       </Box>
     </>

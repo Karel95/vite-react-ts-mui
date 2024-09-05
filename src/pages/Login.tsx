@@ -9,12 +9,15 @@ const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
 const Login = () => {
   return (
     <>
-      <Box sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+      <Box
+        sx={{
+          width: '100%',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
           marginTop: "64px", // 64px cada barra
-        }}>
+        }}
+      >
         <Box
           component="form"
           sx={{
@@ -24,35 +27,44 @@ const Login = () => {
           autoComplete="off"
         >
           <TextField
-            id="outlined-basic"
-            label="Outlined"
-            variant="outlined"
             required
-            fullWidth
-            helperText="Requerido"
-            error={false}
+            id="outlined-required"
+            label="Required"
+            defaultValue="Hello World"
           />
           <TextField
-            id="filled-basic"
-            label="Filled"
-            variant="filled"
-            required
-            fullWidth
-            helperText="Requerido"
-            error={false}
+            disabled
+            id="outlined-disabled"
+            label="Disabled"
+            defaultValue="Hello World"
           />
           <TextField
-            id="standard-basic"
-            label="Standard"
-            variant="standard"
-            required
-            fullWidth
-            helperText="Requerido"
-            error={false}
+            id="outlined-password-input"
+            label="Password"
+            type="password"
+            autoComplete="current-password"
+          />
+          <TextField
+            id="outlined-read-only-input"
+            label="Read Only"
+            defaultValue="Hello World"
+            slotProps={{
+              input: {
+                readOnly: true,
+              },
+            }}
+          />
+          <TextField
+            id="outlined-helperText"
+            label="Helper text"
+            defaultValue="Default Value"
+            helperText="Some important text"
           />
         </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button type="submit" sx={{mr: '5%'}} onClick={handleSubmit} >Register</Button>
+        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <Button type="submit" sx={{ mr: "5%" }} onClick={handleSubmit}>
+            Register
+          </Button>
         </Box>
       </Box>
     </>

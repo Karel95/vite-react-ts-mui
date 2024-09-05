@@ -21,7 +21,7 @@ const Login = () => {
         <Box
           component="form"
           sx={{
-            "& > :not(style)": { m: 1, width: "60%" },
+            "& > :not(style)": { m: 1, width: "90%" },
           }}
           noValidate
           autoComplete="off"
@@ -61,8 +61,8 @@ const Login = () => {
             helperText="Some important text"
           />
         </Box>
-        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button type="submit" sx={{ mr: "5%" }} onClick={handleSubmit}>
+        <Box sx={{ width: '100%', display: "flex", justifyContent: "flex-end" }}>
+          <Button type="submit" sx={{ mr: "10%" }} onClick={handleSubmit}>
             Register
           </Button>
         </Box>

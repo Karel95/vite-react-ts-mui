@@ -50,7 +50,7 @@ const Home = () => {
               }
               variant="filled"
               severity="success"
-              sx={{ width: "500px" }}
+              sx={{ width: "520px" }}
             >
               This is a filled success Alert.
             </Alert>
@@ -79,7 +79,7 @@ const Home = () => {
               }
               variant="outlined"
               severity="info"
-              sx={{ width: "500px" }}
+              sx={{ width: "520px" }}
             >
               This is a outlined info Alert.
             </Alert>
@@ -105,7 +105,7 @@ const Home = () => {
               }
               variant="filled"
               severity="warning"
-              sx={{ width: "500px" }}
+              sx={{ width: "520px" }}
             >
               <AlertTitle>Warning</AlertTitle>
               This is a filled warning Alert with a cautious title.
@@ -126,7 +126,7 @@ const Home = () => {
                 </IconButton>
               }
               severity="error"
-              sx={{ width: "500px" }}
+              sx={{ width: "520px" }}
             >
               <AlertTitle>Error</AlertTitle>
               This is a basic error Alert with a scary title.

@@ -1,12 +1,15 @@
 import { Box, Button, TextField } from "@mui/material";
+import React from "react";
 
-const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
-  // Handle form submission logic here
-  console.log("Form submitted");
-  e.preventDefault();
-};
 
 const Login = () => {
+  const [email, setEmail] = React.useState("");
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(email)
+  }
+
   return (
     <>
       <Box
@@ -20,17 +23,20 @@ const Login = () => {
       >
         <Box
           component="form"
+          onSubmit={handleSubmit}
           sx={{
             "& > :not(style)": { m: 1, width: "90%" },
           }}
-          noValidate
           autoComplete="off"
         >
           <TextField
             required
-            id="outlined-required"
-            label="Required"
-            defaultValue="Hello World"
+            type="email"
+            id="email"
+            label="Email Address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+  
           />
           <TextField
             disabled
@@ -60,9 +66,7 @@ const Login = () => {
             defaultValue="Default Value"
             helperText="Some important text"
           />
-        </Box>
-        <Box sx={{ width: '100%', display: "flex", justifyContent: "flex-end" }}>
-          <Button type="submit" sx={{ mr: "10%" }} onClick={handleSubmit}>
+          <Button type="submit" sx={{ mt: "1rem" }}>
             Register
           </Button>
         </Box>

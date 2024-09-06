@@ -28,6 +28,7 @@ const Weather = () => {
   // Form onSubmit event handler
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError({ error: false, message: "" });
     setLoading(true);
     try {
       if (!city.trim()) throw { message: "Required!" };

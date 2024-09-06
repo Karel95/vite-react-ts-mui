@@ -97,8 +97,11 @@ const Weather = () => {
               {weatherData.city}, {weatherData.country}
             </Typography>
             <Box component='img' src={weatherData.icon} alt={weatherData.conditionText} sx={{margin: '0 auto'}} />
-            <Typography variant="h4" component="h2" align="center" gutterBottom>
+            <Typography variant="h5" component="h3" align="center" gutterBottom>
               {weatherData.temp} 'C
+            </Typography>
+            <Typography variant="h6" component="h4" align="center" gutterBottom>
+              {weatherData.conditionText}
             </Typography>
           </Box>
         )}

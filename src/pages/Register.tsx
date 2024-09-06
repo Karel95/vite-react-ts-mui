@@ -14,8 +14,19 @@ interface MediaProps {
   loading?: boolean;
 }
 
-function Media(props: MediaProps) {
-  const { loading = false } = props;
+const fakePromise = () =>
+  new Promise((resolve) => {
+    setTimeout(resolve, 3000);
+  });
+
+  function Media({ loading: initialLoading = true }: MediaProps) {
+  const [loading, setLoading] = React.useState(initialLoading)
+
+  React.useEffect(() => {
+    fakePromise().then(() => {
+      setLoading(false);
+    });
+  }, []);
 
   return (
     <Card sx={{ maxWidth: 345, m: 2 }}>
@@ -102,16 +113,11 @@ const Register = () => {
     <>
       <Box
         sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100vh',
           marginTop: "64px", // 64px cada barra
         }}
       >
         <div>
           <Media loading />
-          <Media />
         </div>
       </Box>
     </>

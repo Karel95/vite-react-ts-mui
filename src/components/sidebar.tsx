@@ -23,6 +23,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Main from "./grid";
+import Weather from "../pages/Weather";
 
 
 const drawerWidth = 240;
@@ -298,6 +299,7 @@ const MiniDrawer = () => {
           <Route path="/main" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/weather" element={<Weather />} />
         </Routes>
       </Box>
     </Box>

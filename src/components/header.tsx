@@ -180,6 +180,9 @@ const ResponsiveAppBar: React.FC<ModeProps> = ({ isDarkMode, mode }) => {
               <MenuItem onClick={handleCloseUserMenu} component={Link} to="/register">
                 <Typography sx={{ textAlign: "center" }}>Register</Typography>
               </MenuItem>
+              <MenuItem onClick={handleCloseUserMenu} component={Link} to="/weather">
+                <Typography sx={{ textAlign: "center" }}>Weather</Typography>
+              </MenuItem>
             </Menu>
           </Box>
           <Button

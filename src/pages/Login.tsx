@@ -1,20 +1,38 @@
 import { Box, Button, TextField } from "@mui/material";
 import React from "react";
 
-
 const Login = () => {
   const [email, setEmail] = React.useState("");
 
+  const [error, setError] = React.useState({
+    error: false,
+    message: "",
+  });
+
+  const validateEmail = (email: string) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(email)
-  }
+    if (validateEmail(email)) {
+      setError({ error: false, message: "" });
+      console.log("Email validation succeeded");
+    }
+    else {
+      setError ({
+      error: true,
+      message: "Invalid email address",
+      })
+    }
+  };
 
   return (
     <>
       <Box
         sx={{
-          width: '100%',
+          width: "100%",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -36,7 +54,8 @@ const Login = () => {
             label="Email Address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-  
+            error={error.error}
+            helperText={error.message}
           />
           <TextField
             disabled
